@@ -19,6 +19,7 @@
 
 # production
 /build
+/private_uploads/
 
 # misc
 .DS_Store
@@ -39,3 +40,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Python traffic video processing
+.venv/
+venv/
+__pycache__/
+*.pyc

@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "bootstrap": "^5.3.8",
+    "exceljs": "^4.4.0",
+    "mysql2": "^3.24.3",
     "next": "16.4.2",
     "react": "19.3.0",
     "react-dom": "19.3.0"
