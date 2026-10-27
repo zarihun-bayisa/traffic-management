@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 const menuItems = [
@@ -6,6 +8,7 @@ const menuItems = [
   "Agreements",
   "Traffic Cameras",
   "Violations",
+  "Payments",
   "Drivers",
   "Reports",
 ];
@@ -17,8 +20,13 @@ export default function TrafficSidebar({
   activeItem: string;
   onTabSelect?: (item: string) => void;
 }) {
+  async function signOut() {
+    await fetch("/api/auth/logout", { method: "POST" });
+    window.location.assign("/login");
+  }
+
   return (
-    <aside className="hidden w-72 shrink-0 bg-slate-900 p-6 text-white md:block">
+    <aside className="hidden w-72 shrink-0 bg-slate-950 p-6 text-white md:block">
       <Link href="/" className="block">
         <h1 className="text-xl font-bold">Traffic Control</h1>
         <p className="mb-8 mt-2 text-sm text-slate-400">Management System</p>
@@ -29,7 +37,7 @@ export default function TrafficSidebar({
           const isActive = activeItem === item;
           const itemClass = `block w-full rounded-lg px-4 py-3 text-left transition ${
             isActive
-              ? "bg-blue-600 text-white"
+              ? "bg-teal-700 text-white"
               : "text-slate-300 hover:bg-slate-800 hover:text-white"
           }`;
 
@@ -85,11 +93,37 @@ export default function TrafficSidebar({
             );
           }
 
+          if (item === "Payments") {
+            return (
+              <Link
+                key={item}
+                href="/payments"
+                aria-current={isActive ? "page" : undefined}
+                className={itemClass}
+              >
+                {item}
+              </Link>
+            );
+          }
+
           if (item === "Drivers") {
             return (
               <Link
                 key={item}
                 href="/drivers"
+                aria-current={isActive ? "page" : undefined}
+                className={itemClass}
+              >
+                {item}
+              </Link>
+            );
+          }
+
+          if (item === "Reports") {
+            return (
+              <Link
+                key={item}
+                href="/reports"
                 aria-current={isActive ? "page" : undefined}
                 className={itemClass}
               >
@@ -122,6 +156,7 @@ export default function TrafficSidebar({
       <div className="mt-10 border-t border-slate-700 pt-5">
         <p className="text-xs text-slate-400">Traffic Management System</p>
         <p className="mt-1 text-xs text-slate-500">Administration Panel</p>
+        <button type="button" onClick={() => void signOut()} className="mt-5 w-full rounded-md border border-slate-700 px-3 py-2 text-left text-sm font-medium text-slate-300 transition hover:border-slate-500 hover:bg-slate-800 hover:text-white">Sign out</button>
       </div>
     </aside>
   );

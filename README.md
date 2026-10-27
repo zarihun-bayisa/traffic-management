@@ -16,6 +16,12 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Admin Login
+
+Copy `.env.example` to `.env.local` and replace all three values with your own administrator username, strong password, and a random `AUTH_SECRET` of at least 32 characters. Keep `.env.local` private; it is ignored by Git. Restart the development server after changing these values.
+
+The app protects its pages and APIs with a signed, HTTP-only session cookie that expires after 12 hours. The sign-in credentials are configured through environment variables; there is no default username or password.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
